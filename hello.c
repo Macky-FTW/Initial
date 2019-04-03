@@ -7,29 +7,28 @@ int main()
 	int Task;
 
 	//Heading
-	
+
 	printf("\t\t Cipher Algorithms\n");
 	printf("\t\t -----------------\n");
-	
+
 	//Cipher menu
-	
+
 	printf("\t************************************\n");
 	printf("\t* Cipher Types:                    *\n");
 	printf("\t* -------------                    *\n");
 	printf("\t* 1) Rotation (Caesar) Cipher      *\n");
 	printf("\t* 2) Substitution Cipher           *\n");
 	printf("\t************************************\n");
-	
+
 	//Cipher Selection
-	
+
 	printf("\n\t - Select Cipher Number: ");
 	scanf("%d", &Cipher);
 
 	//Selection choice chooses a case number
-	
-	switch (Cipher - 1)
+
+	if (Cipher == 1)
 	{
-	case 0: 
 		//Choice
 
 		printf("\n\t - Selection: Rotation (Caesar) Cipher\n");
@@ -49,8 +48,30 @@ int main()
 		printf("\n\t - Select Task Number: ");
 		scanf("%d", &Task);
 
-		break;
-	case 1:
+		switch (Task - 1)
+		{
+		case 0:
+
+			printf("\n\t - Secection: Encryption: (given algorithm/key/text)\n");
+
+			break;
+		case 1:
+
+			printf("\n\t - Secection: Decyrption: (given algorithm/cipher text/key)\n");
+
+			break;
+		case 2:
+
+			printf("\n\t - Secection: Decryption: (given chiphertext/assuptions)\n");
+
+			break;
+		default: printf("\n\t - ERROR: Not Assigned To Task!\n");
+
+			break;
+		}
+	}
+	else if (Cipher == 2)
+	{
 		//Choice
 
 		printf("\n\t - Secection: Substitution Cipher\n");
@@ -69,15 +90,12 @@ int main()
 
 		printf("\n\t - Select Task Number: ");
 		scanf("%d", &Task);
-		
-		break;
-	default: printf("\n\t - ERROR: Not Assigned To Cipher!\n\n\n");
-	}
 
-	switch(Task - 1)
-	{case 0:
+		switch (Task - 1)
+		{
+		case 0:
 
-		printf("\n\t - Secection: Encryption: (given algorithm/key/text)\n");
+			printf("\n\t - Secection: Encryption: (given algorithm/key/text)\n");
 
 			break;
 		case 1:
@@ -91,7 +109,13 @@ int main()
 
 			break;
 		default: printf("\n\t - ERROR: Not Assigned To Task!\n");
+		}
+
+
 	}
-		
-return 0;
+	else
+	{
+		printf("\n\t - ERROR: Not Assigned To Cipher!\n\n\n");
+	}
+	return 0 ;
 }
