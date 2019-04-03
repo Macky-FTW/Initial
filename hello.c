@@ -25,11 +25,11 @@ int main()
 	printf("\n\t - Select Cipher Number: ");
 	scanf("%d", &Cipher);
 
-	//Selection choice chooses a case number
+	//Cipher selection determins which statement is chosen. If (Caesar) else if (substitution) and else (any non-specifed Cipher number)
 
 	if (Cipher == 1)
 	{
-		//Choice
+		//Cipher selection
 
 		printf("\n\t - Selection: Rotation (Caesar) Cipher\n");
 
@@ -48,6 +48,8 @@ int main()
 		printf("\n\t - Select Task Number: ");
 		scanf("%d", &Task);
 
+		//Task selection determins which case is chosen. Case 0: (Task 1) case 1: (Task 2) case 2: (Task 3) and default (any non-specified Task number)
+
 		switch (Task - 1)
 		{
 		case 0:
@@ -65,6 +67,9 @@ int main()
 			printf("\n\t - Secection: Decryption: (given chiphertext/assuptions)\n");
 
 			break;
+
+			//Default prevents user from implementing an unassigned selection
+
 		default: printf("\n\t - ERROR: Not Assigned To Task!\n");
 
 			break;
@@ -72,7 +77,7 @@ int main()
 	}
 	else if (Cipher == 2)
 	{
-		//Choice
+		//Cipher selection
 
 		printf("\n\t - Secection: Substitution Cipher\n");
 
@@ -91,6 +96,8 @@ int main()
 		printf("\n\t - Select Task Number: ");
 		scanf("%d", &Task);
 
+		//Task selection determins which case is chosen. Case 0: (Task 1) case 1: (Task 2) case 2: (Task 3) and default (any non-specified Task number)
+
 		switch (Task - 1)
 		{
 		case 0:
@@ -108,6 +115,9 @@ int main()
 			printf("\n\t - Secection: Decryption: (given chiphertext/assuptions)\n");
 
 			break;
+
+			//Default prevents user from implementing an unassigned selection
+
 		default: printf("\n\t - ERROR: Not Assigned To Task!\n");
 		}
 
@@ -115,7 +125,9 @@ int main()
 	}
 	else
 	{
-		printf("\n\t - ERROR: Not Assigned To Cipher!\n\n\n");
+		//This prevents bugs and acts as a 'default' in a switch statement
+
+		printf("\n\t - ERROR: Not Assigned To a Cipher!\n\n\n");
 	}
-	return 0 ;
+    return 0;
 }
