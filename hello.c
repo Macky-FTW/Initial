@@ -1,3 +1,12 @@
+/*The program prints a menu selection where the user can select between rotation (caesar cipher) and substitution cipher.
+ The user then enters an option number to select between ciphers. A second menu prints based on the prior selection.
+ The second menu displays 'encryption' and 'decryption' tasks. The user then enters an option number to select between tasks.
+ The 'encryption' task will ask for a plain text in which the user will enter a line of text then press 'Tab' then 'Enter' to continue.
+ The 'decryption' task will ask for a ciphered text in which the user will enter a line of ciphered text then press'Tab then 'Enter' to continue.
+ Both tasks will ask for a key. The caesar cipher will ask for a key in which must be a numerical value. The substitution cipher will ask for a key which should include
+ 26 unique capital alphabetic characters. Both tasks will print a result of the desired outcome either encrypted or decrypted.
+*/
+
 #include <stdio.h>
 #include<strings.h>
 
@@ -14,6 +23,7 @@ int main ()
 {
     int Cipher;
 	int Task;
+    int key;
 	char text[999];
     char *c_text;
 
@@ -110,6 +120,26 @@ int main ()
 		switch (Task - 1)
 		{
 		case 0:
+            //Stating the task selection
+
+            printf("\n\t - Selection: Encryption: (given plain text/key)\n");
+			printf("\n\t***********************************************************\n\n");
+
+			//User enters plain text. 'Tab' MUST be pressed before the 'Enter' to continue, in case plain text consists of paragraphs
+
+			printf("\t - Enter Plain Text In Upper Case Characters (press 'Tab' then 'Enter' to continue): ");
+			scanf("%[^\t]s", text);
+
+			//User enters key. Must contain 26 upper case alphabetic characters in any order (each must be unique)
+
+			printf("\n\n\t - Enter Key Of 26 Upper Case Characters: ");
+			scanf("%s", KEY);
+
+			//Display of what each letter is assigned to in the key
+
+            printf("\n\tABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
+            printf("\t||||||||||||||||||||||||||");
+            printf("\n\t%s\n", KEY);
 
             //Calls the substitution encyption function
 
@@ -117,6 +147,26 @@ int main ()
 
         break;
 		case 1:
+		       //Stating the task selection
+
+			printf("\n\t - Selection: Decryption: (given cipher text/key)\n");
+			printf("\n\t***********************************************************\n\n");
+
+			//User enters cipher text. 'Tab' MUST be pressed before the 'Enter' to continue, in case cipher text consists of paragraphs
+
+			printf("\t - Enter Cipher Text In Upper Case Characters (press 'Tab' then 'Enter' to continue): ");
+			scanf("%[^\t]s", text);
+
+			//User enters key. Must contain 26 upper case alphabetic characters in any order (each must be unique)
+
+			printf("\n\n\t - Enter Key Of 26 Upper Case Characters: ");
+			scanf("%s", KEY);
+
+			//Display of what each letter is assigned to in the key
+
+            printf("\n\n\t%s\n", KEY);
+            printf("\t||||||||||||||||||||||||||");
+            printf("\n\tABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
 
             //Calls the substitution decryption function
 
@@ -143,7 +193,11 @@ int main ()
 	}
 	return 0;
 	}
-//Caesar encryption function definition
+/*Caesar encryption function definition.
+Corrects lower case to upper case characters.
+Changes each character in the plain text to the a new character in the cipher text due to the value of the key.
+*/
+
 char *Cencryption(char cipher_text[])
 {
 
@@ -215,7 +269,10 @@ char *Cencryption(char cipher_text[])
     return cipher_text;
 
 }
-//Caesar decryption function definition
+/*Caesar decryption function definition
+Corrects lower case to upper case characters.
+Changes each character in the cipher text to the new character in the plain text due to the value of the key.
+*/
 char *Cdecryption(char cipher_text[])
 {
 
@@ -290,34 +347,16 @@ char *Cdecryption(char cipher_text[])
 	return cipher_text;
 
 }
-//Substitution encryption function definition
+/*Substitution encryption function definition
+Checks each character in the plain text and seeks to locate its position in the alphabet.
+When the position in the alphabet is found, it determins what character it should be assigned due to the key.
+*/
 
 char *Sencryption(char cipher_text[])
 {
     int i;
     int j;
     char text[999];
-
-    //Stating the task selection
-
-            printf("\n\t - Selection: Encryption: (given plain text/key)\n");
-			printf("\n\t***********************************************************\n\n");
-
-			//User enters plain text. 'Tab' MUST be pressed before the 'Enter' to continue, in case plain text consists of paragraphs
-
-			printf("\t - Enter Plain Text (press 'Tab' then 'Enter' to continue): ");
-			scanf("%[^\t]s", text);
-
-			//User enters key. Must contain 26 upper case alphabetic characters in any order (each must be unique)
-
-			printf("\n\n\t - Enter Key Of 26 Upper Case Characters: ");
-			scanf("%s", KEY);
-
-			//Display of what each letter is assigned to in the key
-
-            printf("\n\tABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-            printf("\t||||||||||||||||||||||||||");
-            printf("\n\t%s\n", KEY);
 
     //Each character of the plain text is being tested at increment 'i' while it is less than the stringlength
 
@@ -327,7 +366,7 @@ char *Sencryption(char cipher_text[])
 
         for(j = 0; j < 26; j++)
         {
-            //If the character in the plain text and alphabet are the same, the character is then converted into the corresponding key character
+            //If the character in the plain text 'i' and alphabet 'j' are the same, the character is then converted into the corresponding key character
 
             if(alphabet[j] == cipher_text[i])
             {
@@ -347,7 +386,43 @@ char *Sencryption(char cipher_text[])
     printf("\n\n\t***********************************************************\n");
     return cipher_text;
 }
-//Substitution decryption function definition
+/*Substitution decryption function definition
+Checks each character in the cipher text and seeks to locate its position in the key.
+When the position in the key is found, it determins what character it should be assigned due to the alphabet.
+*/
 
 char *Sdecryption(char cipher_text[])
 {
+    int i;
+    int j;
+    char text[999];
+
+    //Each character of the cipher text is being tested at increment 'i' while it is less than the stringlength
+
+
+    for(i = 0; i < strlen(cipher_text); i++)
+    {
+        //Each selected character at increment 'i' will be tested for its position in the key and corresponding position in the alphabet at increment 'j'
+
+        for(j = 0; j < 26; j++)
+        {
+            //If the character in the cipher text 'i' and key 'j'are the same, the character is then converted into the corresponding alphabet character
+
+            if(cipher_text[i] == KEY[j])
+            {
+
+                //Converting character into alphabet associated character
+
+                cipher_text[i] = alphabet[j];
+                break;
+            }
+        }
+    }
+
+    //Display of the decrypted/plain text
+
+    printf("\n\t***********************************************************\n");
+    printf("\n\tDecryption: %s", cipher_text);
+    printf("\n\n\t***********************************************************\n");
+    return cipher_text;
+}
